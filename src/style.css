@@ -1,0 +1,297 @@
+/* ===========================
+   HairFlow Landing — Luxury Dark
+   =========================== */
+
+:root {
+  --bg: #0A0A0A;
+  --bg-card: #141414;
+  --gold: #D4AF37;
+  --gold-dark: #B8960F;
+  --gold-light: #F5D066;
+  --white: #FFFFFF;
+  --secondary: #888888;
+  --border: #252525;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--font-body);
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+#app {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Ambient Glows === */
+.glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-1 {
+  width: 500px;
+  height: 500px;
+  background: rgba(212, 175, 55, 0.08);
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.glow-2 {
+  width: 300px;
+  height: 300px;
+  background: rgba(212, 175, 55, 0.04);
+  bottom: -100px;
+  right: -100px;
+}
+
+/* === Film Grain Overlay === */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* === Main Container === */
+.container {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px 32px;
+  text-align: center;
+}
+
+/* === Logo === */
+.logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+  animation: fadeSlideUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+
+.logo-mark {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 12px 40px rgba(212, 175, 55, 0.3));
+}
+
+.logo-img {
+  width: 100px;
+  height: 100px;
+  display: block;
+}
+
+.logo-line {
+  width: 40px;
+  height: 2px;
+  background: rgba(212, 175, 55, 0.35);
+  border-radius: 1px;
+  margin-top: 20px;
+}
+
+/* === Typography === */
+.title {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: var(--white);
+  margin-bottom: 16px;
+  animation: fadeSlideUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.1s both;
+}
+
+.title-accent {
+  color: var(--gold);
+  font-weight: 700;
+  font-style: italic;
+}
+
+.subtitle {
+  font-size: 17px;
+  color: var(--secondary);
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  margin-bottom: 36px;
+  animation: fadeSlideUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s both;
+}
+
+/* === Redirect Notice === */
+.redirect-notice {
+  font-size: 14px;
+  color: var(--gold);
+  margin-bottom: 20px;
+  min-height: 20px;
+  letter-spacing: 0.5px;
+  animation: fadeSlideUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.3s both;
+}
+
+/* === Store Buttons === */
+.store-buttons {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 24px;
+  animation: fadeSlideUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.35s both;
+}
+
+.store-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  border-radius: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--white);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  cursor: pointer;
+}
+
+.store-btn:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.1);
+  transform: translateY(-2px);
+}
+
+.store-btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  border-color: transparent;
+  color: var(--bg);
+}
+
+.store-btn-primary:hover {
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+  border-color: transparent;
+}
+
+.store-btn-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+.store-btn-small {
+  font-size: 11px;
+  opacity: 0.75;
+  letter-spacing: 0.3px;
+}
+
+.store-btn-big {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* === Desktop Note === */
+.desktop-note {
+  font-size: 13px;
+  color: #555;
+  letter-spacing: 0.5px;
+  animation: fadeSlideUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.4s both;
+}
+
+/* === Footer === */
+.footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.footer-link {
+  color: var(--secondary);
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--gold);
+}
+
+.footer-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #333;
+}
+
+/* === Animations === */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsive === */
+@media (max-width: 520px) {
+  .title {
+    font-size: 36px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  .store-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .store-btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .glow-1 {
+    width: 300px;
+    height: 300px;
+  }
+}
