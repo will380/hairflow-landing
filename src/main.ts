@@ -4,9 +4,8 @@ import './style.css';
 // HairFlow Landing — Device detection & redirect
 // ============================================
 
-// Store URLs — update these with real IDs
 const STORE_URLS = {
-  ios: 'https://apps.apple.com/app/hairflow/id6740487880',
+  ios: 'https://apps.apple.com/fr/app/hairfloww/id6756860185',
   android: 'https://play.google.com/store/apps/details?id=com.hairflow.app',
 };
 
