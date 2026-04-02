@@ -352,6 +352,11 @@
         document.getElementById('btn-ios').style.display = 'none';
       }
 
+      // Copy referral code to clipboard so the app can detect it after install
+      if (code && navigator.clipboard) {
+        navigator.clipboard.writeText('HAIRFLOW-' + code.toUpperCase()).catch(function() {});
+      }
+
       // Deep link fallback (Universal/App Links handle most cases)
       if (code) {
         window.location.href = 'hairflow://invite/' + code;
