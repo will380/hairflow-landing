@@ -3,15 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join HairFlow</title>
-  <meta name="description" content="See yourself with any hairstyle using AI. Download HairFlow and try it free.">
-  <meta property="og:title" content="Try HairFlow - AI Hairstyle Preview">
-  <meta property="og:description" content="See yourself with any hairstyle before your next haircut. Download now and get free looks!">
+  <title>You're Invited to HairFlow</title>
+  <meta name="description" content="Your friend invited you to HairFlow. See yourself with any hairstyle using AI — try it free.">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta property="og:title" content="You're Invited to HairFlow">
+  <meta property="og:description" content="Your friend invited you to try HairFlow — see yourself with any hairstyle using AI. Download now and get free looks!">
+  <meta property="og:image" content="/icon.png">
   <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #0A0A0A;
       color: #FFFFFF;
       min-height: 100vh;
@@ -20,51 +28,247 @@
       justify-content: center;
       text-align: center;
       padding: 24px;
+      overflow: hidden;
+      position: relative;
     }
-    .container { max-width: 400px; }
-    h1 { font-size: 28px; margin-bottom: 12px; }
-    p { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 32px; line-height: 1.5; }
-    .btn {
-      display: inline-block;
-      background: #D4AF37;
-      color: #0A0A0A;
-      padding: 16px 32px;
-      border-radius: 14px;
-      font-size: 17px;
-      font-weight: 700;
-      text-decoration: none;
-      margin: 8px;
+
+    /* Ambient glow effects — matching landing page */
+    .glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
     }
-    .btn-secondary {
-      background: transparent;
+    .glow-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
+      top: -150px; left: -100px;
+    }
+    .glow-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+      bottom: -100px; right: -80px;
+    }
+
+    /* Film grain texture */
+    .grain {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 420px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+    .logo-mark {
+      width: 72px; height: 72px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #D4AF37 0%, #B8960C 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(212,175,55,0.25);
+    }
+    .logo-img {
+      width: 52px; height: 52px;
+      object-fit: contain;
+    }
+    .logo-line {
+      width: 40px; height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent);
+      margin-top: 20px;
+    }
+
+    .invite-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(212,175,55,0.12);
+      border: 1px solid rgba(212,175,55,0.2);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
       color: #D4AF37;
-      border: 1px solid #D4AF37;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
-    .stores { margin-top: 16px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .title-accent {
+      background: linear-gradient(135deg, #D4AF37, #F5E6A3, #D4AF37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-style: italic;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .store-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+    }
+    .store-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(212,175,55,0.15);
+    }
+    .store-btn-primary {
+      background: linear-gradient(135deg, #D4AF37, #B8960C);
+      color: #0A0A0A;
+      border: none;
+      box-shadow: 0 4px 24px rgba(212,175,55,0.3);
+    }
+    .store-btn-primary:hover {
+      box-shadow: 0 6px 32px rgba(212,175,55,0.4);
+    }
+    .store-btn-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+    .store-btn-small {
+      font-size: 10px;
+      opacity: 0.8;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    .store-btn-big {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      align-items: center;
+      z-index: 1;
+    }
+    .footer-link {
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      font-size: 12px;
+    }
+    .footer-link:hover { color: rgba(255,255,255,0.6); }
+    .footer-dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 28px; }
+      .store-buttons { flex-direction: column; align-items: center; }
+      .store-btn { width: 100%; max-width: 260px; justify-content: center; }
+    }
   </style>
-  <script>
-    // Try to open the app via deep link
-    const code = window.location.pathname.split('/invite/')[1];
-    if (code) {
-      // Try app scheme first
-      window.location.href = 'hairflow://invite/' + code;
-      // Fallback: after 1.5s if still on this page, they don't have the app
-      setTimeout(function() {
-        document.getElementById('download').style.display = 'block';
-      }, 1500);
-    }
-  </script>
 </head>
 <body>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="grain"></div>
+
   <div class="container">
-    <h1>You've been invited to HairFlow</h1>
-    <p>See yourself with any hairstyle using AI. Try it free before your next haircut.</p>
-    <div id="download">
-      <div class="stores">
-        <a class="btn" href="https://apps.apple.com/app/hairflow/id6756860185">Download on iOS</a>
-        <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.hairflow.app">Get on Android</a>
+    <div class="logo-wrap">
+      <div class="logo-mark">
+        <img src="/logo.png" alt="HairFlow" class="logo-img">
       </div>
+      <div class="logo-line"></div>
+    </div>
+
+    <div class="invite-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>
+      Invite
+    </div>
+
+    <h1>
+      See Your<br>
+      <span class="title-accent">Perfect Cut</span>
+    </h1>
+
+    <p class="subtitle">
+      A friend invited you to try HairFlow.<br>
+      Visualize any hairstyle on yourself with AI.
+    </p>
+
+    <div class="store-buttons">
+      <a href="https://apps.apple.com/app/hairflow/id6756860185" class="store-btn store-btn-primary" aria-label="Download on the App Store">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span class="store-btn-text">
+          <span class="store-btn-small">Download on the</span>
+          <span class="store-btn-big">App Store</span>
+        </span>
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.hairflow.app" class="store-btn" aria-label="Get it on Google Play">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.395 13l2.303-2.492zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
+        <span class="store-btn-text">
+          <span class="store-btn-small">Get it on</span>
+          <span class="store-btn-big">Google Play</span>
+        </span>
+      </a>
     </div>
   </div>
+
+  <footer class="footer">
+    <a href="https://hairflow.app/privacy" class="footer-link">Privacy</a>
+    <span class="footer-dot"></span>
+    <a href="mailto:contact@hairflow.app" class="footer-link">Contact</a>
+  </footer>
+
+  <script>
+    // Try to open the app via deep link (Universal/App Links handle this automatically,
+    // but fallback scheme for older devices)
+    var code = window.location.pathname.split('/invite/')[1];
+    if (code) {
+      window.location.href = 'hairflow://invite/' + code;
+    }
+  </script>
 </body>
 </html>
