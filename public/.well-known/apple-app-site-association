@@ -1,0 +1,25 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": [
+          "FJ95C887AR.com.hairflow.app"
+        ],
+        "paths": [
+          "/invite/*"
+        ],
+        "components": [
+          {
+            "/": "/invite/*"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "FJ95C887AR.com.hairflow.app"
+    ]
+  }
+}

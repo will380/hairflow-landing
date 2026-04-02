@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.hairflow.app",
+      "sha256_cert_fingerprints": [
+        "9C:9F:9B:79:A7:54:27:A2:99:31:DF:E7:8C:D0:84:34:73:94:2A:66:50:C0:79:80:55:CB:A4:6D:F5:9E:06:83"
+      ]
+    }
+  }
+]

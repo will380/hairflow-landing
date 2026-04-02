@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join HairFlow</title>
+  <meta name="description" content="See yourself with any hairstyle using AI. Download HairFlow and try it free.">
+  <meta property="og:title" content="Try HairFlow - AI Hairstyle Preview">
+  <meta property="og:description" content="See yourself with any hairstyle before your next haircut. Download now and get free looks!">
+  <meta property="og:type" content="website">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0A0A0A;
+      color: #FFFFFF;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+    .container { max-width: 400px; }
+    h1 { font-size: 28px; margin-bottom: 12px; }
+    p { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 32px; line-height: 1.5; }
+    .btn {
+      display: inline-block;
+      background: #D4AF37;
+      color: #0A0A0A;
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 700;
+      text-decoration: none;
+      margin: 8px;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: #D4AF37;
+      border: 1px solid #D4AF37;
+    }
+    .stores { margin-top: 16px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  </style>
+  <script>
+    // Try to open the app via deep link
+    const code = window.location.pathname.split('/invite/')[1];
+    if (code) {
+      // Try app scheme first
+      window.location.href = 'hairflow://invite/' + code;
+      // Fallback: after 1.5s if still on this page, they don't have the app
+      setTimeout(function() {
+        document.getElementById('download').style.display = 'block';
+      }, 1500);
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>You've been invited to HairFlow</h1>
+    <p>See yourself with any hairstyle using AI. Try it free before your next haircut.</p>
+    <div id="download">
+      <div class="stores">
+        <a class="btn" href="https://apps.apple.com/app/hairflow/id6756860185">Download on iOS</a>
+        <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.hairflow.app">Get on Android</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
